@@ -22,7 +22,7 @@ __date__ = "Feb 28, 2020"
 
 def init_function():
     from lammps import lammps  # noqa: PLC0415
-    from lammps.mliap import activate_mliappy  # noqa: PLC0415
+    from lammps.mliap import activate_mliappy_kokkos  # noqa: PLC0415
     from mpi4py import MPI  # noqa: PLC0415
 
     from pylammpsmpi.mpi.lmpmpi import select_cmd  # noqa: PLC0415
@@ -36,7 +36,7 @@ def init_function():
             if len(argument_lst) > 0:
                 args.extend(argument_lst)
             self._job = lammps(cmdargs=args)
-            activate_mliappy(self._job)
+            activate_mliappy_kokkos(self._job)
 
         def shutdown(self):
             if self._job is not None:
